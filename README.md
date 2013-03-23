@@ -1,4 +1,4 @@
-# ![cook-ember-sample](https://github.com/kentbutler/grails-ember-cooks)
+# ![grails-ember-cooks](https://github.com/kentbutler/grails-ember-cooks)
 
 ### Sample webapp integrating EmberJS and Grails
 
