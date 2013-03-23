@@ -101,7 +101,6 @@ class BootStrap {
             // Load Unit data
             def args = ['nameKey' : [(messageManagerService.PREFIX):'unit', (messageManagerService.SUFFIX):'name'],
                         'abbrKey' : [(messageManagerService.PREFIX):'unit', (messageManagerService.SUFFIX):'abbr']]
-    
             messageManagerService.populateDbFromMessages(cook.Unit, args)
             
             // Load Category data

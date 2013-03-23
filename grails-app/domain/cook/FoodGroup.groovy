@@ -7,7 +7,7 @@ import org.springframework.context.i18n.LocaleContextHolder
 
 class FoodGroup {
 	
-	static expose = 'foodGroup' // Expose as REST API using json-rest-api plugin
+	static expose = 'food_group' // Expose as REST API using json-rest-api plugin
 	
 	String nameKey
 	transient String name

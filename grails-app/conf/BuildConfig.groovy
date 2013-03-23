@@ -7,7 +7,7 @@ grails.project.source.level = 1.6
 grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 // Adding Plugin-in:  grails-json-rest
-grails.plugin.location.jsonrest = '/opt/projects/grails-json-rest-api'
+grails.plugin.location.jsonrest = '../grails-json-rest-api'
 
 
 grails.project.dependency.resolution = {
