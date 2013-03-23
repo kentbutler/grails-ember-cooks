@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Cooks</title>
+    <title>Cooking at Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ubuntu orange and unique font.">
     <meta name="author" content="Thomas Park">
