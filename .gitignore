@@ -1,9 +1,3 @@
-classes
-target
-.settings
-.classpath
-.project
-plugin.xml
-*.zip
-jrebel.lic
-logs
+.settings/
+logs/
+target/
