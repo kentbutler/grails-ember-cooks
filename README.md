@@ -15,9 +15,12 @@ The Grails app uses a modified [grails-json-rest-api](https://github.com/kentbut
 
         git clone https://github.com/kentbutler/grails-ember-cooks.git
 
-* Download the fork of the grails-json-rest-api 
+* Download the fork of the grails-json-rest-api, and check out the EmberJS branch
 
-        git clone https://github.com/kentbutler/grails-json-rest-api.git
+        git clone https://github.com/kentbutler/grails-json-rest-api.git <my local dir>
+        cd <my local dir>
+        git checkout emberjs-support
+        
 
 * Place them alongside each other and run by opening a console inside the grails-ember-cooks directory and execute:
 
