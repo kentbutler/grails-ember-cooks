@@ -8,7 +8,7 @@ class RawIngredient {
 	String nameKey
 	FoodGroup foodGroup
     
-    static expose = 'rawIngredient' // Expose as REST API using json-rest-api plugin
+    static expose = 'raw_ingredient' // Expose as REST API using json-rest-api plugin
     
     static constraints = {
         nameKey(blank:false, nullable:false,maxSize:64,unique:true)

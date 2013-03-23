@@ -23,6 +23,11 @@ The Grails app uses a modified [grails-json-rest-api](https://github.com/kentbut
 
         grails run-app 
 
+* Navigate to http://localhost:8080/cook/
+
+
+**NOTE!! WIP - Only the Admin portion has meaningful content at the moment**
+
 
 #### [Kent Butler](https://github.com/kentbutler) - Developer
 
