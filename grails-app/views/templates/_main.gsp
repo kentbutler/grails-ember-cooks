@@ -22,6 +22,7 @@
               <li class="divider"></li>
               <li>{{#linkTo categorys}} Categories {{/linkTo}}</li>
               <li>{{#linkTo foodGroups}} Food Groups {{/linkTo}}</li>
+              <li>{{#linkTo rawIngredients}} Raw Ingredients {{/linkTo}}</li>
               <li>{{#linkTo units}} Units {{/linkTo}}</li>
             </ul>
           </li>

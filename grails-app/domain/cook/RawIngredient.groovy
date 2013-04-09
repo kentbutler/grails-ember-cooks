@@ -34,11 +34,11 @@ class RawIngredient {
         JSONObject json = new JSONObject()
         if (id) json.put('id', id)
         json.put('nameKey', nameKey)
-        json.put('foodGroupId', foodGroup.id)
+        json.put('foodGroupId', foodGroup?.id)
         
         if (messageSource) {
             json.put("name", getName(messageSource))
-            json.put('foodGroup', foodGroup.getName(messageSource))
+            //json.put('foodGroup', foodGroup?.getName(messageSource))
         }
         
         return json
@@ -55,6 +55,12 @@ class RawIngredient {
         if (json.has("foodGroupId")) {
             foodGroup = FoodGroup.get(json?.getInt("foodGroupId"))
         }
+    }
+    
+    RawIngredient clone() {
+        def copy = new RawIngredient()
+        copy.properties = this.properties
+        copy.foodGroup = this.foodGroup
     }
 
     String toString() {

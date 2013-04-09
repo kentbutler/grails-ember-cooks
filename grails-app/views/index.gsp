@@ -40,6 +40,7 @@
     <script src="js/admin/category.js"></script>
     <script src="js/admin/unit.js"></script>
     <script src="js/admin/group.js"></script>
+    <script src="js/admin/rawIngredient.js"></script>
 
   </body>
 </html>
@@ -49,4 +50,5 @@
 <g:render template="/templates/main" /> 
 <g:render template="/templates/category" /> 
 <g:render template="/templates/foodGroup" /> 
+<g:render template="/templates/rawIngredient" /> 
 <g:render template="/templates/unit" /> 

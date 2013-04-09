@@ -16,20 +16,18 @@ class RawIngredientFunctionalTests extends BrowserTestCase {
     
     void setUp() {
         super.setUp()
-        
-        fg = new FoodGroup(nameKey:"group.meat").save(flush:true)
+        fg = FoodGroup.findByNameKey("group.meat")
     }
     
     void tearDown() {
         super.tearDown()
-        
-        fg.delete(flush:true)
     }
 
     
     void testList() {
-        //def fg = new FoodGroup(nameKey:"group.meat").save(flush:true)
-        genericTestList(new RawIngredient([nameKey:"ingredient.meat.beef", foodGroup:fg]))
+        assertNotNull "associated FoodGroup is null", fg
+        assertNotNull "associated FoodGroup is not persisted", fg.id
+        genericTestList(new RawIngredient([nameKey:"ingredient.meat.beef", foodGroup: fg]))
     }
     
     void testCreate() {

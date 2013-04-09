@@ -97,7 +97,7 @@ class MessageManagerIntegrationTests {
                    ]
         
         // EXECUTE
-        messageManagerService.populateDbFromProperties(Unit, args, props)
+        messageManagerService.populateDbFromProperties(Unit, args, props, null)
         
         def search = new Unit(nameKey:'unit.kg.name', abbrKey:'unit.kg.abbr')
         def results = Unit.findAll (search)
@@ -112,7 +112,53 @@ class MessageManagerIntegrationTests {
         assertTrue "Did not find records for lb", results.size() > 0
 
         // And execute a second time just to make sure it doesn't blow up
-        messageManagerService.populateDbFromProperties(Unit, args, props)
+        messageManagerService.populateDbFromProperties(Unit, args, props, null)
+        
+    }
+    
+    @Test
+    void testPopulateDbFromPropsWithStaticParams() {
+        assertNotNull "messageSource is null",messageSource
+        assertNotNull "messageSource name is null",messageManagerService.messageSourceName
+        
+        log.debug(messageSource)
+        
+        def propOuter = messageSource.getMergedProperties(Locale.getDefault())
+        assertNotNull propOuter
+        log.debug(propOuter)
+                
+        def props = propOuter.getProperties()
+        
+        assertNotNull "Could not extract Properties content",props
+        
+        // DEBUG
+        props.keySet().each {
+            log.debug("[$it] -> [${props[it]}]")
+        }
+        
+        // Add this to new instances
+        FoodGroup fg = FoodGroup.findByNameKey('group.meat')
+        if (!fg) {
+            fg = new FoodGroup(nameKey:'group.meat').save(flush:true)
+        }
+        def staticParms = [foodGroup:fg]
+
+        // INPUT DATA
+        def args = ['nameKey' : [ (messageManagerService.PREFIX): 'ingredient.meat', (messageManagerService.SUFFIX): '' ] ]
+        
+        // EXECUTE
+        messageManagerService.populateDbFromProperties(RawIngredient, args, props, staticParms)
+        
+        def search = new RawIngredient(nameKey:'ingredient.meat.beef')
+        def results = RawIngredient.findAll (search)
+        
+        assertNotNull "Did not find records for beef", results
+        assertTrue "Did not find records for beef", results.size() > 0
+        
+        assertNotNull "Static property was not set", results[0]['foodGroup']
+        
+        // And execute a second time just to make sure it doesn't blow up
+        messageManagerService.populateDbFromProperties(Unit, args, props, staticParms)
         
     }
     

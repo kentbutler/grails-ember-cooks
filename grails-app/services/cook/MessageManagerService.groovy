@@ -6,7 +6,6 @@ class MessageManagerService {
     def log = LogFactory.getLog(getClass())
     
     def messageSource
-    static final String messageSourceName = 'messages'   // a better way??
     static final String PREFIX = 'prefix'
     static final String SUFFIX = 'suffix'
     static final String DATA = 'data'
@@ -25,21 +24,24 @@ class MessageManagerService {
      * @param Class entity to populate
      * @param Map of [fieldName : ['prefix':val, 'suffix':val]] - every fieldName/pattern combination given
      *     is applied to each entity to locate existence
-     *     
-     * @return
-     */
-    def populateDbFromMessages(Class clazz, Map args) {
+     * 2param    
+     * 
+     * @param clazz - class to populate 
+     * @param args - instructions to the populate engine, how to find the i18n messages
+     * @param staticProps - properties which should be applied to every new clazz instance
+    */
+    def populateDbFromMessages(Class clazz, Map args, Map staticProps = [:]) {
         def propOuter = messageSource.getMergedProperties(Locale.getDefault())
         def props = propOuter.getProperties()
         
         // GUARD
         if (!props) {
-            log.error("Could not load message properties from source: $messageSourceName" )
+            log.error("Could not load message properties from source" )
             return
         }
         
         // props is a regular Properties object, if all went well
-        populateDbFromProperties(clazz, args, props)
+        populateDbFromProperties(clazz, args, props, staticProps)
     }
     
     /**
@@ -49,7 +51,7 @@ class MessageManagerService {
      * @param props
      * @return
      */
-    def populateDbFromProperties(Class clazz, def args, def props) {
+    def populateDbFromProperties(Class clazz, def args, def props, def staticProps) {
         def dataMap = extractProperties(args, props)
         log.debug("------ Processing map results -------")
         
@@ -58,8 +60,8 @@ class MessageManagerService {
         // Use results for first field and match up the rest of the fields
         dataMap[dataMap.keySet().first()][DATA].keySet().each { propBase ->
             log.debug("\tProp: $propBase")
-            example = clazz.newInstance()
-            
+            example = clazz.newInstance(staticProps)
+          
             dataMap.keySet().each { fieldName ->
                 log.debug("\t\tSetting field: $fieldName")
                 example[fieldName] = dataMap[fieldName][DATA][propBase]

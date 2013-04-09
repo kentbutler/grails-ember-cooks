@@ -5,7 +5,17 @@
 Cook = Ember.Application.create({
 	 LOG_TRANSITIONS: true,  // Ember router debug
 	 LOG_BINDINGS: true,     // Ember binding debug
-	 rootElement: '#main'   // where to place the main app template (default is $('body').append() )
+	 rootElement: '#main',   // where to place the main app template (default is $('body').append() )
+	 
+	 customEvents: {
+		    'onbeforeunload': "navAway"
+	 },
+	 
+     ready: function() {
+         // Connect some Controllers
+         var router = this.get('Router');
+         //var content = Cook.FoodGroupsController.all();
+     }
 });
 
 
@@ -22,11 +32,7 @@ Cook.Router.map(function() {
 	  this.resource('categorys');
 	  this.resource('units');
 	  this.resource('foodGroups');
-	  /*
-	  this.resource('category', function() {
-	    this.route('new');
-	  });
-	  */
+	  this.resource('rawIngredients');
 	});
 
 
@@ -70,3 +76,4 @@ Cook.Store = DS.Store.extend({
     	serializer: Cook.RESTAdapter
     })
 });
+

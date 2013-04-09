@@ -5,6 +5,7 @@
 
 Cook.FoodGroupsRoute = Ember.Route.extend({
   setupController: function(controller) {
+     //controller.set('content', Cook.FoodGroup.find({nameKey:'%'}));
      controller.set('content', Cook.FoodGroup.find());
   }
 });
@@ -19,6 +20,13 @@ Cook.FoodGroupRoute = Ember.Route.extend({
 
 Cook.FoodGroupsController = Ember.ArrayController.extend({
 	newNameKey: '',
+	currentItem: null,
+	
+	loadData: function(force) {
+		if (force || Ember.isEmpty(this.get('content'))) {
+		    this.set('content', Cook.FoodGroup.find());
+		}
+	},
 	
 	createFoodGroup: function (a, b) {
 		var newNameKey = this.get('newNameKey');
@@ -30,6 +38,19 @@ Cook.FoodGroupsController = Ember.ArrayController.extend({
         item.get('transaction').commit();
 
 		this.set('newNameKey', '');
+	}, 
+	
+	init: function() {
+	    this.set('content', Cook.FoodGroup.find());
+	    /*
+		//var items = this.get('content.firstObject');
+		var items = this.get('content');
+		var len = items ? items.get('length') : 0;
+		
+		var item = len > 0 ? items.objectAt(0) : null;
+		//this.set('currentItem', item);
+		//alert('initializing');
+		*/
 	}
 });
 
@@ -84,3 +105,5 @@ Cook.FoodGroup = DS.Model.extend({
 	name: DS.attr('string'),
 	nameKey: DS.attr('string')
 });
+
+

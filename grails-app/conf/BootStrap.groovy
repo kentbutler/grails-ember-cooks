@@ -110,6 +110,15 @@ class BootStrap {
             // Load FoodGroup data
             args = ['nameKey' : [(messageManagerService.PREFIX):'group', (messageManagerService.SUFFIX):'']]
             messageManagerService.populateDbFromMessages(cook.FoodGroup, args)
+            
+            // Load RawIngredients
+            //  -- we're going to load Ingredients per FoodGroup
+            FoodGroup.list().each { foodGroup ->
+                def groupName = foodGroup.nameKey.substring(foodGroup.nameKey.indexOf('.') + 1)
+                args = ['nameKey' : [(messageManagerService.PREFIX):"ingredient.$groupName", (messageManagerService.SUFFIX):'']]
+                messageManagerService.populateDbFromMessages(cook.RawIngredient, args, [foodGroup : foodGroup])
+            }
+                        
         }
         
 		/*
