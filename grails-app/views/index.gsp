@@ -33,9 +33,11 @@
     <script src="js/jquery.smooth-scroll.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootswatch.js"></script>
-    <script src="js/libs/handlebars-1.0.rc.3.js"></script>
-    <script src="js/libs/ember.js"></script>
-    <script src="js/libs/ember-data.js"></script>
+    <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+    <script src="js/libs/ember-1.0.0-rc.3.js"></script>
+    
+    <script src="js/libs/ember-data-0.13.js"></script>
+   
     <script src="js/app.js"></script>
     <script src="js/admin/category.js"></script>
     <script src="js/admin/unit.js"></script>

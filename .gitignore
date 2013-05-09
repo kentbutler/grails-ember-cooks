@@ -1,3 +1,7 @@
+.project
+.classpath
+post.txt
 .settings/
 logs/
 target/
+target-eclipse/

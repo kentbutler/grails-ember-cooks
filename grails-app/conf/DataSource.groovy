@@ -13,8 +13,29 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            //dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            pooled = true
+            dbCreate = "update"
+            driverClassName = "com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost/cook?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true"
+            username = "root"
+            password = "dbpa55"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+            properties {
+                minEvictableIdleTimeMillis = 180000
+                timeBetweenEvictionRunsMillis = 180000
+                testOnBorrow = true
+                testWhileIdle = false
+                testOnReturn = false
+                validationQuery = "SELECT 1"
+                maxActive=100
+                initialSize = 10
+                maxIdle=50
+                minIdle=10
+                removeAbandoned=false
+            }
+
         }
     }
     test {
