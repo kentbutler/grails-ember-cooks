@@ -2,7 +2,7 @@
 'use strict';
 
 Cook.Store = DS.Store.extend({
-	revision: 11,
+	revision: 12,
     adapter: DS.RESTAdapter.create({ 
     	bulkCommit: false, 
     	namespace: "cook/api",
